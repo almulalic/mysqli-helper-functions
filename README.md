@@ -51,7 +51,7 @@ Side functions are more simpler to call but they require more arguments: request
 ## ***1. MAIN FUNCTIONS***
 
 
-## **EXAMPLE ONE - MYSQLI_SINGLE_QUERRYž()**
+### **EXAMPLE ONE - MYSQLI_SINGLE_QUERRY()**
 
  Usually (with sql error check, result check and formatting ) your PHP code to make a SINGLE querry where you
  select all data from a table would look like this :
@@ -101,7 +101,7 @@ Same example using main function mysqli_single_querry() from this file
  This function call reduced from 19 lines to 5 ( both examples could have less white space )
  The function call could be called in more lines if the querry is longer to increase readability which in worse case would produce 11 lines of code.
 
-## ***EXAMPLE 2 - MYSQLI_MULTIPLE_QUERRY()***
+### ***EXAMPLE 2 - MYSQLI_MULTIPLE_QUERRY()***
 
 In this scenario we will need to check if the user exist in the database and than based on that querry we should
 decide if we should insert new data into table or throw an error if the user exist.
