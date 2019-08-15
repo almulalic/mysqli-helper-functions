@@ -1,7 +1,7 @@
-#***MYSQLI HELPER FUNCTIONS (PHP)***
+# ***MYSQLI HELPER FUNCTIONS (PHP)***
 
 
-##***INTRODUCTION***
+##INTRODUCTION
 
 
 This is an simple include file written in PHP that (currenlty) has 6 functions made to simplify mysqli querries.
