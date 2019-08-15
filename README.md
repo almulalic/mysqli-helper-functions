@@ -83,6 +83,7 @@ This code is not too complicated untill you have multiple querrys that all depen
 querry which would make the code not only unreadable but confusing and distracting.
 
 Functions that are defined in this include files keep the result but make the code much shorter and more readable. 
+
 These functions feel more like pure SQL functions so every user, no matter of their skill level, can understand 
 the concept, which , in my opinion, is much harder in the previous example.
 
@@ -99,6 +100,7 @@ Same example using main function mysqli_single_querry() from this file
 **NOTE :** Functions have integrated error handling system so SQL error check and wrong parameter error check is not needed(throws an exception with exact location).
 
  This function call reduced from 19 lines to 5 ( both examples could have less white space )
+ 
  The function call could be called in more lines if the querry is longer to increase readability which in worse case would produce 11 lines of code.
 
 ### ***EXAMPLE 2 - MYSQLI_MULTIPLE_QUERRY()***
@@ -146,7 +148,9 @@ This written in simple mysqli way would look like this :
   This doesen't look that bad but it sure is a lot of lines to read,follow, remember and scroll.
 
   Lets look at the same example using mysqli_multiple_querry() function.
+  
   This function allows us to basically make array of arrays(matrix) where every row(array) would represent a single querry.
+  
   Additional varaiables would determine if the function should stop and return index of last successful querry or finish and return      true.
 
 ```
@@ -193,10 +197,11 @@ This written in simple mysqli way would look like this :
         	mysqli_stmt_execute($stmt);
         	$result = mysqli_stmt_get_result($stmt);
     	}
-
+```
 
 - Same example using mysqli_select() function :
 
+```
 	$result = mysqli_select(
 		"email",
 		"users",
