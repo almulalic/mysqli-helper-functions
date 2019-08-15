@@ -26,37 +26,33 @@ Side functions are more simpler to call but they require more arguments: request
 
 **Table of content :**
 
-  -1. Main function and examples
+  1. Main function and examples
    - 1.1 mysqli_single_querry() example
    - 1.2 mysqli_multiple_querry() example
-  -2. Side functions and examples
+  2. Side functions and examples
    - 2.1 mysqli_select() example
    - 2.2 mysqli_select_all() example
    - 2.3 mysqli_insert() example
    - 2.4 mysqli_update() example
-  -3. Guide and detailed description for main functions
+  3. Guide and detailed description for main functions
    - 3.1 mysqli_single_querry() detailed description
    - 3.2 mysqli_multiple_querry() detailed description
-  -4. Guide and detailed description for side functions
+  4. Guide and detailed description for side functions
    - 4.1 mysqli_select() detailed description
    - 4.2 mysqli_select_all() detailed description
    - 4.3 mysqli_insert() detailed description
    - 4.4 mysqli_update() detailed description
-  -5. Credits and update log
+  5. Credits and update log
    - 5.1 Update logs
    - 5.2 Credits
 
-////////////////////////
-// 1. MAIN FUNCTIONS //
-//////////////////////
+*** 1. MAIN FUNCTIONS ***
 
 
-////////////////////////////////////////////
-// EXAMPLE ONE - MYSQLI SINGLE EXECUTE() //
-//////////////////////////////////////////
+** EXAMPLE ONE - MYSQLI_SINGLE_QUERRY **
 
-- Usually (with sql error check, result check and formatting ) your PHP code to make a SINGLE querry where you
-  select all data from a table would look like this :
+ Usually (with sql error check, result check and formatting ) your PHP code to make a SINGLE querry where you
+ select all data from a table would look like this :
 	
 ```
 	$sql = "SELECT * FROM users WHERE email = ?";
@@ -81,25 +77,27 @@ Side functions are more simpler to call but they require more arguments: request
     	}
 ```
 
-- This code is not too complicated untill you have multiple querrys that all depend on the result of the previous 
-  querry which would make the code not only unreadable but confusing and distracting.
+This code is not too complicated untill you have multiple querrys that all depend on the result of the previous 
+querry which would make the code not only unreadable but confusing and distracting.
 
-- Functions that are defined in this include files keep the result but make the code much shorter and more readable. 
-  These functions feel more like pure SQL functions so every user, no matter of their skill level, can understand 
-  the concept, which , in my opinion, is much harder in the previous example.
+Functions that are defined in this include files keep the result but make the code much shorter and more readable. 
+These functions feel more like pure SQL functions so every user, no matter of their skill level, can understand 
+the concept, which , in my opinion, is much harder in the previous example.
 
-- Same example using main function mysqli_single_querry() from this file :
-	
+Same example using main function mysqli_single_querry() from this file 
+
+```
 	$count = mysqli_single_querry( "SELECT * FROM users WHERE email = ?", $email, $database_connection,'c');
         if($count > 0) {
         	header("Location: ../register.php?emailTaken");
             	exit();        
         }
+```
 
-- NOTE : Functions have integrated error handling system so SQL error check and wrong parameter error check is not needed(throws an exception with exact location).
+** NOTE : ** Functions have integrated error handling system so SQL error check and wrong parameter error check is not needed(throws an exception with exact location).
 
-- This function call reduced from 19 lines to 5 ( both examples could have less white space )
-- The function call could be called in more lines if the querry is longer to increase readability which in worse case would produce 11 lines of code.
+ This function call reduced from 19 lines to 5 ( both examples could have less white space )
+ The function call could be called in more lines if the querry is longer to increase readability which in worse case would produce 11 lines of code.
 
 ////////////////////////////////////////////
 /// EXAMPLE 2 - MYSQLI_MULTIPLE_QUERRY() //
