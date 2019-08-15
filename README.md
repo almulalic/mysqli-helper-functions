@@ -1,4 +1,4 @@
-**_ _MYSQLI HELPER FUNCTIONS (PHP)_ _**
+**_ _ MYSQLI HELPER FUNCTIONS (PHP) _ _**
 
 
 ///////////////////
