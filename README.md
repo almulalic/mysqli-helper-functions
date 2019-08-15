@@ -1,7 +1,7 @@
 # ***MYSQLI HELPER FUNCTIONS (PHP)***
 
 
-##INTRODUCTION
+## **INTRODUCTION**
 
 
 This is an simple include file written in PHP that (currenlty) has 6 functions made to simplify mysqli querries.
@@ -25,7 +25,7 @@ Side functions are more simpler to call but they require more arguments: request
   can maybe help someone avoid sphagetti code. 
 
 
-###**Table of content :**
+### **Table of content :**
 
   1. Main function and examples
    - 1.1 mysqli_single_querry() example
@@ -47,10 +47,10 @@ Side functions are more simpler to call but they require more arguments: request
    - 5.1 Update logs
    - 5.2 Credits
 
-##***1. MAIN FUNCTIONS***
+## ***1. MAIN FUNCTIONS***
 
 
-##**EXAMPLE ONE - MYSQLI_SINGLE_QUERRY**
+## **EXAMPLE ONE - MYSQLI_SINGLE_QUERRY**
 
  Usually (with sql error check, result check and formatting ) your PHP code to make a SINGLE querry where you
  select all data from a table would look like this :
