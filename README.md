@@ -1,33 +1,31 @@
-**_ _ MYSQLI HELPER FUNCTIONS (PHP) _ _**
+***MYSQLI HELPER FUNCTIONS (PHP)***
 
 
-///////////////////
-// INTRODUCTION // 
-/////////////////
+***INTRODUCTION***
 
-- This is an simple include file written in PHP that (currenlty) has 6 functions made to simplify mysqli querries.
+This is an simple include file written in PHP that (currenlty) has 6 functions made to simplify mysqli querries.
 
-- The MySQLi functions allows you to access MySQL database servers. 
+The MySQLi functions allows you to access MySQL database servers. 
 
-- They are more secure than regular functions because they use prepared statements instead of regular ones which 
+They are more secure than regular functions because they use prepared statements instead of regular ones which 
   prevents probability of SQL Injection attacks and improves security.
 
-- File contains 2 main functions and 5 side functions :
-- 2 main functions are : mysqli_single_querry() and mysqli_multiple_querry()
-- 4 side functions are : mysqli_select(),mysqli_select_all(),mysqli_insert(),mysqli_update()
+File contains 2 main functions and 5 side functions :
+  - 2 main functions are : mysqli_single_querry() and mysqli_multiple_querry()
+  - 4 side functions are : mysqli_select(),mysqli_select_all(),mysqli_insert(),mysqli_update()
 
-- Only difference between these groups of functions is the ammount of variables that you send to the functions.
+Only difference between these groups of functions is the ammount of variables that you send to the functions.
  
-- Main functions are more advanced and requiere : written mysqli querry,(parameters), data connection and (return type).
-- Side functions are more simpler to call but they require more arguments: requests,tableName,targets,databse connection,(return type),(operators).
+Main functions are more advanced and requiere : written mysqli querry,(parameters), data connection and (return type).
+Side functions are more simpler to call but they require more arguments: requests,tableName,targets,databse connection,(return type),(operators).
   These functions accept parts of sql querry statment than the function itself combines them to make a real mysqli querry.
 
-- NOTE that this is not a new way or a better way of executing querrys in PHP, this is just an include file that
+**NOTE** that this is not a new way or a better way of executing querrys in PHP, this is just an include file that
   can maybe help someone avoid sphagetti code. 
 
 
-- Table of content : 
----------------------
+**Table of content :**
+
   1. Main function and examples
     - 1.1 mysqli_single_querry() example
     - 1.2 mysqli_multiple_querry() example
@@ -59,7 +57,8 @@
 
 - Usually (with sql error check, result check and formatting ) your PHP code to make a SINGLE querry where you
   select all data from a table would look like this :
-
+	
+```
 	$sql = "SELECT * FROM users WHERE email = ?";
    	$stmt = mysqli_stmt_init($conn);
 
@@ -73,12 +72,14 @@
         	mysqli_stmt_store_result($stmt);
 		$resultCheck = mysqli_stmt_num_rows($stmt);
         
+	
         	if($resultCheck > 0) {
         
             		header("Location: ../register.php?emailTaken");
             		exit();
         	}
     	}
+```
 
 - This code is not too complicated untill you have multiple querrys that all depend on the result of the previous 
   querry which would make the code not only unreadable but confusing and distracting.
