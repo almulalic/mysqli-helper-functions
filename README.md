@@ -47,6 +47,7 @@ Side functions are more simpler to call but they require more arguments: request
    - 5.1 Update logs
    - 5.2 Credits
 
+
 ## ***1. MAIN FUNCTIONS***
 
 
@@ -100,15 +101,14 @@ Same example using main function mysqli_single_querry() from this file
  This function call reduced from 19 lines to 5 ( both examples could have less white space )
  The function call could be called in more lines if the querry is longer to increase readability which in worse case would produce 11 lines of code.
 
-////////////////////////////////////////////
-/// EXAMPLE 2 - MYSQLI_MULTIPLE_QUERRY() //
-//////////////////////////////////////////
+## ***EXAMPLE 2 - MYSQLI_MULTIPLE_QUERRY()***
 
-- In this scenario we will need to check if the user exist in the database and than based on that querry we should
-  decide if we should insert new data into table or throw an error if the user exist.
+In this scenario we will need to check if the user exist in the database and than based on that querry we should
+decide if we should insert new data into table or throw an error if the user exist.
 
-- This written in simple mysqli way would look like this :
-	
+This written in simple mysqli way would look like this :
+
+```
 	$sql = "SELECT * FROM users WHERE email = ? OR username = ?";
    	$stmt = mysqli_stmt_init($conn);
 
@@ -141,31 +141,35 @@ Same example using main function mysqli_single_querry() from this file
     			}
     		}
 	}
+```
 
-- This doesen't look that bad but it sure is a lot of lines to read,follow, remember and scroll.
+  This doesen't look that bad but it sure is a lot of lines to read,follow, remember and scroll.
 
-- Lets look at the same example using mysqli_multiple_querry() function.
-- This function allows us to basically make array of arrays(matrix) where every row(array) would represent a single querry.
-  Additional varaiables would determine if the function should stop and return index of last successful querry or finish and return true.
+  Lets look at the same example using mysqli_multiple_querry() function.
+  This function allows us to basically make array of arrays(matrix) where every row(array) would represent a single querry.
+  Additional varaiables would determine if the function should stop and return index of last successful querry or finish and return      true.
 
+```
   	mysqli_multiple_querry(
 		array("SELECT * FROM users WHERE username = ? OR email = ?",array($username,$email),'e',false),
 		array("INSERT INTO users (name,surname,email,username,password) VALUES (?,?,?,?,?)",array($name,$surname,$email,$username,$email,$password),'')),
 		$conn
 	);
+```
 
-- And that is basically it, this function will actually call mysqli_single_querry() function twice with the parameters you provided.
-- In the array definition of the first (SQL querry) parameter stays the same as in the single call function(more on that later),
-  that is true for the second and third parameter too but the fourth parameter is actually the contidition in which the next statement should be executed
-- In this example we ran a simple SELECT * querry , in the return type parameter we passed 'e' which stands for exist(retruns true if value exist, false if not)
-  and we also passed bool(false), so this function would actually be read as :
+ And that is basically it, this function will actually call mysqli_single_querry() function twice with the parameters you provided.
+ In the array definition of the first (SQL querry) parameter stays the same as in the single call function(more on that later),
+ that is true for the second and third parameter too but the fourth parameter is actually the contidition in which the next statement    should be executed
 
-							   => RESULT AND CONDITION ARE EQUAL => EXECUTE NEXT QUERRY
-  EXECUTE FIRST QUERRY=> COMPARE RESULT TO CONDITION => IF
-							   => RESULT AND CONDITION ARE NOT EQUAL => RETURN INDEX OF LAST QUERRY THAT WAS EXECUTED => BREAK 
+ In this example we ran a simple SELECT * querry , in the return type parameter we passed 'e' which stands for exist(retruns true if     value exist, false if not)
+ and we also passed bool(false), so this function would actually be read as :
 
-- More on the parameters types returns and detailed description later.
-- NOTE : these functions already have
+							=> RESULT == CONDITION => EXECUTE NEXT QUERRY
+  EXECUTE FIRST QUERRY => COMPARE RESULT TO CONDITION => IF
+							=> RESULT != CONDITION => RETURN INDEX OF LAST QUERRY THAT WAS EXECUTED => BREAK 
+
+  More on the parameters types returns and detailed description later.
+ **NOTE :** these functions already have
 
 
 ///////////////////////
