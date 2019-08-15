@@ -51,7 +51,7 @@ Side functions are more simpler to call but they require more arguments: request
 ## ***1. MAIN FUNCTIONS***
 
 
-## **EXAMPLE ONE - MYSQLI_SINGLE_QUERRY**
+## **EXAMPLE ONE - MYSQLI_SINGLE_QUERRYž()**
 
  Usually (with sql error check, result check and formatting ) your PHP code to make a SINGLE querry where you
  select all data from a table would look like this :
@@ -172,18 +172,15 @@ This written in simple mysqli way would look like this :
  **NOTE :** these functions already have
 
 
-///////////////////////
-// 2. SIDE FUNCTION //
-/////////////////////
+## ***SIDE FUNCTIONS***
 
-- These functions require more variables and a bit of formatting but in some cases they are quick and efficient way to execute simple mysqli querrys like select or select all.
+ These functions require more variables and a bit of formatting but in some cases they are quick and efficient way to execute simple    mysqli querrys.
 
-////////////////////////////////////
-// EXAMPLE ONE - MYSQLI SELECT() //
-//////////////////////////////////
+### **EXAMPLE ONE - MYSQLI SELECT()** 
 
-- This is an example of a mysqli normal SELECT querry :
+ This is an example of a mysqli normal SELECT querry :
 
+```
 	$sql = "SELECT email FROM users WHERE username= ?";
    	$stmt = mysqli_stmt_init($conn);
 
@@ -208,15 +205,13 @@ This written in simple mysqli way would look like this :
 		'r'
 	);
 
-- This can also be done in one row.
+```
 
+### **EXAMPLE TWO - MYSQLI SELECT ALL()**
 
-////////////////////////////////////////
-// EXAMPLE TWO - MYSQLI SELECT ALL() //
-//////////////////////////////////////
+ This is an example of a mysqli SELECT ALL querry :
 
-- This is an example of a mysqli normal SELECT * querry :
-
+```
 	$sql = "SELECT * FROM users WHERE username= ?";
    	$stmt = mysqli_stmt_init($conn);
 
@@ -229,10 +224,11 @@ This written in simple mysqli way would look like this :
         	mysqli_stmt_execute($stmt);
         	$result = mysqli_stmt_get_result($stmt);
     	}
+```
 
+ Same example using mysqli_select_all() function :
 
-- Same example using mysqli_select_all() function :
-
+```
 	$result = mysqli_select(
 		"users",
 		array("username" => $username),
@@ -240,15 +236,14 @@ This written in simple mysqli way would look like this :
 		'r'
 	);
 
-- This can also be done in one row.
+```
 
 
-///////////////////////////////////////
-// EXAMPLE THREE - MYSQLI INSERT () //
-/////////////////////////////////////
+### **EXAMPLE THREE - MYSQLI INSERT ()**
 
-- This is an example of a mysqli normal INSERT querry :
+ This is an example of a mysqli normal INSERT querry :
 
+```
 	$sql = "SELECT * FROM users WHERE username= ?";
    	$stmt = mysqli_stmt_init($conn);
 
@@ -262,26 +257,25 @@ This written in simple mysqli way would look like this :
         	$result = mysqli_stmt_get_result($stmt);
     	}
 
+```
 
-- Same example using mysqli_select_all() function :
+ Same example using mysqli_select_all() function :
 
+```
 	$result = mysqli_select(
 		"users",
 		array("username" => $username),
 		$database_connection,
 		'r'
 	);
+```
 
-- This can also be done in one row.
+### **EXAMPLE FOUR - MYSQLI UPDATE()**
 
+ This is an example of a mysqli normal UPDATE querry :
 
-/////////////////////////////////////
-// EXAMPLE FOUR - MYSQLI UPDATE() //
-///////////////////////////////////
-
-- This is an example of a mysqli normal UPDATE querry :
-
-	$sql = "SELECT * FROM users WHERE username= ?";
+```
+	$sql = "UPDATE users SET firstName = ? WHERE username = ?";
    	$stmt = mysqli_stmt_init($conn);
 
     	if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -289,45 +283,36 @@ This written in simple mysqli way would look like this :
         	exit();    
     	} else {
 
-        	mysqli_stmt_bind_param($stmt,"s",$userEmail);
+        	mysqli_stmt_bind_param($stmt,"ss",$firstName,$username);
         	mysqli_stmt_execute($stmt);
         	$result = mysqli_stmt_get_result($stmt);
     	}
+```
 
+ Same example using mysqli_select_all() function :
 
-- Same example using mysqli_select_all() function :
-
+```
 	$result = mysqli_update(
 		"users",
 		array("username" => $username),
 		array("email" => $email),		
 		$database_connection
 	);
+```
+
+**NOTE:** These functions can be called in a single row too.
 
 
+## ***3. GUIDE AND DOCUMENTATION FOR MAIN FUNCTIONS ***
 
-NOTE: These functions can be called in a single row too.
-
-
-
-////////////////////////////////////////////////////
-// 3. GUIDE AND DOCUMENTATION FOR MAIN FUNCTIONS //
-//////////////////////////////////////////////////
+## ***4. GUIDE AND DOCUMENTATION FOR SIDE FUNCTIONS ***
 
 
-
-////////////////////////////////////////////////////
-// 4. GUIDE AND DOCUMENTATION FOR MAIN FUNCTIONS //
-//////////////////////////////////////////////////
+* *- Dictionary :
+  **[REQ]** = Requiered, **[OPT]** = optional, **[DEF]** = Default
 
 
-- Dictionary :
-  [REQ] = Requiered, [OPT] = optional, [DEF] = Default
-
-
-//////////////////////////
-// 3.1 MYSQLI_SELECT() //
-////////////////////////
+### **4.1 MYSQLI_SELECT()**
 
 
  - Use this function to select specific values from SQL database <->
