@@ -28,24 +28,24 @@ Side functions are more simpler to call but they require more arguments: request
 ### **Table of content :**
 
   #### 1. Main function and examples
-   ##### - 1.1 mysqli_single_querry() example
-   ##### - 1.2 mysqli_multiple_querry() example
+   #####  1.1 mysqli_single_querry() example
+   #####  1.2 mysqli_multiple_querry() example
   #### 2. Side functions and examples
-   ##### - 2.1 mysqli_select() example
-   ##### - 2.2 mysqli_select_all() example
-   ##### - 2.3 mysqli_insert() example
-   ##### - 2.4 mysqli_update() example
+   #####  2.1 mysqli_select() example
+   #####  2.2 mysqli_select_all() example
+   #####  2.3 mysqli_insert() example
+   #####  2.4 mysqli_update() example
   #### 3. Guide and detailed description for main functions
-   ##### - 3.1 mysqli_single_querry() detailed description
-   ##### - 3.2 mysqli_multiple_querry() detailed description
+   #####  3.1 mysqli_single_querry() detailed description
+   #####  3.2 mysqli_multiple_querry() detailed description
   #### 4. Guide and detailed description for side functions
-   ##### - 4.1 mysqli_select() detailed description
-   ##### - 4.2 mysqli_select_all() detailed description
-   ##### - 4.3 mysqli_insert() detailed description
-   ##### - 4.4 mysqli_update() detailed description
+   #####  4.1 mysqli_select() detailed description
+   #####  4.2 mysqli_select_all() detailed description
+   #####  4.3 mysqli_insert() detailed description
+   #####  4.4 mysqli_update() detailed description
   #### 5. Update logs and credits
-   ##### - 5.1 Update logs
-   ##### - 5.2 Credits
+   #####  5.1 Update logs
+   #####  5.2 Credits
 
 
  ## ***1. MAIN FUNCTIONS*** 
