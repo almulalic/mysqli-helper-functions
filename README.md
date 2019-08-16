@@ -11,17 +11,30 @@ The MySQLi functions allows you to access MySQL database servers.
 They are more secure than regular functions because they use prepared statements instead of regular ones which 
   prevents probability of SQL Injection attacks and improves security.
 
-File contains 2 main functions and 5 side functions :
-  - 2 main functions are : mysqli_single_querry() and mysqli_multiple_querry()
-  - 4 side functions are : mysqli_select(),mysqli_select_all(),mysqli_insert(),mysqli_update()
+#### **File contains 2 main functions and 4 side functions :**
+  - 2 main functions are : **_mysqli_single_querry()_** and **_mysqli_multiple_querry()_**
+  - 4 side functions are : **_mysqli_select()_** , **_mysqli_select_all()_**, **_mysqli_insert()_**, **_mysqli_update()_**.
 
-Only difference between these groups of functions is the ammount of variables that you send to the functions.
+Only difference between these groups of functions is the ammount and type of variables that you send to the function.
  
-Main functions are more advanced and requiere : written mysqli querry,(parameters), data connection and (return type).
-Side functions are more simpler to call but they require more arguments: requests,tableName,targets,databse connection,(return type),(operators).
-  These functions accept parts of sql querry statment than the function itself combines them to make a real mysqli querry.
+Main functions are more straight forward and requiere : 
+	written mysqli querry,
+	parameters, 
+	database connection, 
+	(return type)
 
-**NOTE** that this is not a new way or a better way of executing querrys in PHP, this is just an include file that
+
+Side functions are more precise but they require more arguments: 
+	requests,
+	table name,
+	targets,
+	databse connection,
+	return type,
+	operators
+
+These functions accept parts of sql querry statment than the function itself combines them to make a real mysqli querry.
+
+**NOTE: ** that this is not a new way or a better way of executing querrys in PHP, this is just an include file that
   can maybe help someone avoid sphagetti code. 
 
 
