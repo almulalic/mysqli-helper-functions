@@ -27,25 +27,25 @@ Side functions are more simpler to call but they require more arguments: request
 
 ### **Table of content :**
 
-  1. Main function and examples
-   - 1.1 mysqli_single_querry() example
-   - 1.2 mysqli_multiple_querry() example
-  2. Side functions and examples
-   - 2.1 mysqli_select() example
-   - 2.2 mysqli_select_all() example
-   - 2.3 mysqli_insert() example
-   - 2.4 mysqli_update() example
-  3. Guide and detailed description for main functions
-   - 3.1 mysqli_single_querry() detailed description
-   - 3.2 mysqli_multiple_querry() detailed description
-  4. Guide and detailed description for side functions
-   - 4.1 mysqli_select() detailed description
-   - 4.2 mysqli_select_all() detailed description
-   - 4.3 mysqli_insert() detailed description
-   - 4.4 mysqli_update() detailed description
-  5. Credits and update log
-   - 5.1 Update logs
-   - 5.2 Credits
+  ##### _ _1. Main function and examples_ _
+   ###### - 1.1 mysqli_single_querry() example
+   ###### - 1.2 mysqli_multiple_querry() example
+  ##### _ _2. Side functions and examples_ _
+   ###### - 2.1 mysqli_select() example
+   ###### - 2.2 mysqli_select_all() example
+   ###### - 2.3 mysqli_insert() example
+   ###### - 2.4 mysqli_update() example
+  ##### _ _3. Guide and detailed description for main functions_ _
+   ###### - 3.1 mysqli_single_querry() detailed description
+   ###### - 3.2 mysqli_multiple_querry() detailed description
+  ##### _ _4. Guide and detailed description for side functions_ _
+   ###### - 4.1 mysqli_select() detailed description
+   ###### - 4.2 mysqli_select_all() detailed description
+   ###### - 4.3 mysqli_insert() detailed description
+   ###### - 4.4 mysqli_update() detailed description
+  ##### _ _5. Credits and update log_ _
+   ###### - 5.1 Update logs
+   ###### - 5.2 Credits
 
 
 ## ***1. MAIN FUNCTIONS***
