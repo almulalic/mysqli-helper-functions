@@ -12,8 +12,8 @@ They are more secure than regular functions because they use prepared statements
   prevents probability of SQL Injection attacks and improves security.
 
 #### **File contains 2 main functions and 4 side functions :**
-  - 2 main functions are : **_mysqli_single_querry()_** and **_mysqli_multiple_querry()_**
-  - 4 side functions are : **_mysqli_select()_** , **_mysqli_select_all()_**, **_mysqli_insert()_**, **_mysqli_update()_**.
+  - 2 main functions are : **_mysqli_single_querry ( )_** and **_mysqli_multiple_querry ( )_**
+  - 4 side functions are : **_mysqli_select ( )_** , **_mysqli_select_all ( )_**, **_mysqli_insert ( )_**, **_mysqli_update ( )_**.
 
 Only difference between these groups of functions is the ammount and type of variables that you send to the function.
  
