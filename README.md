@@ -28,8 +28,8 @@ Side functions are more simpler to call but they require more arguments: request
 ### **Table of content :**
 
   #### 1. Main function and examples
-   #####  1.1 mysqli_single_querry() example
-   #####  1.2 mysqli_multiple_querry() example
+   	1.1 mysqli_single_querry() example
+	1.2 mysqli_multiple_querry() example
   #### 2. Side functions and examples
    #####  2.1 mysqli_select() example
    #####  2.2 mysqli_select_all() example
