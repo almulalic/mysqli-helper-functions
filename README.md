@@ -178,20 +178,16 @@ This written in simple mysqli way would look like this :
  In the array definition of the first (SQL querry) parameter stays the same as in the single call function(more on that later),
  that is true for the second and third parameter too but the fourth parameter is actually the contidition in which the next statement    should be executed
 
- In this example we ran a simple SELECT * querry , in the return type parameter we passed 'e' which stands for exist(retruns true if     value exist, false if not)
- and we also passed bool(false), so this function would actually be read as :
-
+```
 							=> RESULT == CONDITION => EXECUTE NEXT QUERRY
   EXECUTE FIRST QUERRY => COMPARE RESULT TO CONDITION => IF
 							=> RESULT != CONDITION => RETURN INDEX OF LAST QUERRY THAT WAS EXECUTED => BREAK 
-
-  More on the parameters types returns and detailed description later.
- **NOTE :** these functions already have
+```
 
 
 ## ***SIDE FUNCTIONS***
 
- These functions require more variables and a bit of formatting but in some cases they are quick and efficient way to execute simple    mysqli querrys.
+ These functions require more variables and a bit of formatting but in some cases they are quick way to execute simple sql querrys.
 
 ### **EXAMPLE ONE - MYSQLI SELECT()** 
 
@@ -247,7 +243,7 @@ This written in simple mysqli way would look like this :
  Same example using mysqli_select_all() function :
 
 ```
-	$result = mysqli_select(
+	$result = mysqli_select_all(
 		"users",
 		array("username" => $username),
 		$database_connection,
@@ -262,7 +258,7 @@ This written in simple mysqli way would look like this :
  This is an example of a mysqli normal INSERT querry :
 
 ```
-	$sql = "SELECT * FROM users WHERE username= ?";
+	$sql = "INSERT INTO users (username,email) VALUES (?,?)";
    	$stmt = mysqli_stmt_init($conn);
 
     	if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -277,14 +273,13 @@ This written in simple mysqli way would look like this :
 
 ```
 
- Same example using mysqli_select_all() function :
+ Same example using mysqli_insert() function :
 
 ```
-	$result = mysqli_select(
+	$result = mysqli_insert(
 		"users",
-		array("username" => $username),
+		array("username" => $username,"email"=>$email),
 		$database_connection,
-		'r'
 	);
 ```
 
@@ -307,7 +302,7 @@ This written in simple mysqli way would look like this :
     	}
 ```
 
- Same example using mysqli_select_all() function :
+ Same example using mysqli_update() function :
 
 ```
 	$result = mysqli_update(
@@ -317,6 +312,7 @@ This written in simple mysqli way would look like this :
 		$database_connection
 	);
 ```
+
 
 **NOTE:** These functions can be called in a single row too.
 
@@ -344,24 +340,21 @@ This written in simple mysqli way would look like this :
      [OPT] ( string OR array ) $operator , [DEF] " AND "
  ); 
 
- < NOTE > - $values_to_select can be '*' to select all from database but there is a separate function called mysqli_select_all().
- < NOTE > - If you need more than 1 operator provide an array of operators ( or a single operator) in $operator, if only one operator is provided it will be used for all parameters.
- < NOTE > - This function is "smart" which means that the [OPT] parameters will be decided automatically, you dont need to specify the default ones if you need any one thats after the first one.
+**NOTE:** - $values_to_select can be '*' to select all from database but there is a separate function called mysqli_select_all().
+**NOTE:** - If you need more than 1 operator provide an array of operators ( or a single operator) in $operator, if only one operator is provided it will be used for all parameters.
+**NOTE:** - This function is "smart" which means that the [OPT] parameters will be decided automatically, you dont need to specify the default ones if you need any one thats after the first one.
 
- Supported return types :
- ------------------------
+ ####Supported return types :
      - a - returns associatve array [DEF] can change in $returnType = 'a' 
      - r - returns mysqli_result
      - c - returns count of rows in mysqli result
      - e - returns true if value exist or false if it don't exist
 
- Supported operator types :
- ------------------------
+ ####Supported operator types :
      - AND - [DEF] Can be changed in $operator  
      - OR - 
 
- Errors and returns :
- ------------------------
+ ####Errors and returns :
      - Throws (ArgumentTypeError) for any argument missmatch, 
      - Throws (emptyParameterError) for calls with empty parameters, 
      - Throws (sqlError) for any SQL-related error 
