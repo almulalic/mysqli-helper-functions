@@ -189,7 +189,7 @@ This written in simple mysqli way would look like this :
 
  These functions require more variables and a bit of formatting but in some cases they are quick way to execute simple sql querrys.
 
-### **EXAMPLE ONE - MYSQLI SELECT()** 
+### **EXAMPLE ONE - MYSQLI SELECT ( )** 
 
  This is an example of a mysqli normal SELECT querry :
 
@@ -221,7 +221,7 @@ This written in simple mysqli way would look like this :
 
 ```
 
-### **EXAMPLE TWO - MYSQLI SELECT ALL()**
+### **EXAMPLE TWO - MYSQLI SELECT ALL ( )**
 
  This is an example of a mysqli SELECT ALL querry :
 
@@ -253,7 +253,7 @@ This written in simple mysqli way would look like this :
 ```
 
 
-### **EXAMPLE THREE - MYSQLI INSERT ()**
+### **EXAMPLE THREE - MYSQLI INSERT ( )**
 
  This is an example of a mysqli normal INSERT querry :
 
@@ -283,7 +283,7 @@ This written in simple mysqli way would look like this :
 	);
 ```
 
-### **EXAMPLE FOUR - MYSQLI UPDATE()**
+### **EXAMPLE FOUR - MYSQLI UPDATE ( )**
 
  This is an example of a mysqli normal UPDATE querry :
 
@@ -326,166 +326,151 @@ This written in simple mysqli way would look like this :
   **[REQ]** = Requiered, **[OPT]** = optional, **[DEF]** = Default
 
 
-### **4.1 MYSQLI_SELECT()**
+### **4.1 MYSQLI_SELECT ( )**
 
 
  - Use this function to select specific values from SQL database <->
 
+```
  mysqli_select(
      [REQ] ( string ) $values_to_select (comma separated),
      [REQ] ( string ) $database_name,
-     [REQ] ( assoc array ) $targets, 
+     [REQ] ( associative array ) $targets, 
      [REQ] ( mysqli_connect() ) $database_connection
      [OPT] ( string ) $returnType, [DEF] associative array
      [OPT] ( string OR array ) $operator , [DEF] " AND "
  ); 
+ ```
 
 **NOTE:** - $values_to_select can be '*' to select all from database but there is a separate function called mysqli_select_all().
 **NOTE:** - If you need more than 1 operator provide an array of operators ( or a single operator) in $operator, if only one operator is provided it will be used for all parameters.
 **NOTE:** - This function is "smart" which means that the [OPT] parameters will be decided automatically, you dont need to specify the default ones if you need any one thats after the first one.
 
- ####Supported return types :
+ #### Supported return types :
      - a - returns associatve array [DEF] can change in $returnType = 'a' 
      - r - returns mysqli_result
      - c - returns count of rows in mysqli result
      - e - returns true if value exist or false if it don't exist
 
- ####Supported operator types :
+ #### Supported operator types :
      - AND - [DEF] Can be changed in $operator  
      - OR - 
 
- ####Errors and returns :
+ #### Errors and returns :
      - Throws (ArgumentTypeError) for any argument missmatch, 
      - Throws (emptyParameterError) for calls with empty parameters, 
      - Throws (sqlError) for any SQL-related error 
      - Returns (by default) associative array as final output (can be changed)
 
 
-//////////////////////////////
-// 3.2 MYSQLI_SELECT_ALL() //
-////////////////////////////
+### **4.2 MYSQLI_SELECT_ALL ( )**
 
  - Use this function to select all values from SQL database <->
 
+```
  mysqli_select_all(
      [REQ] (string) $database_name,
      [REQ] (assoc array) $targets, 
      [REQ] (mysqli_connect()) $database_connection
      [OPT] (string) $returnType [DEF] 'a' associative array
- ); 
+ );
+ ```
 
- Supported return types :
- ------------------------
+ ### Supported return types :
      - a - returns associatve array --> [DEF] <--
      - r - returns mysqli_result
      - c - returns count of rows in mysqli result
      - e - returns true if value exist or false if it don't exist
- Errors and returns :
- ------------------------
+
+### Errors and returns :
      - Throws (ArgumentTypeError) for any argument missmatch, 
      - Throws (emptyParameterError) for calls with empty parameters, 
      - Throws (sqlError) for any SQL-related error 
      - returns (by default) associative array as final output (can be changed)
 
 
-//////////////////////////
-// 3.3 MYSQLI_INSERT() //
-////////////////////////
+### **4.2 MYSQLI_INSERT ( )**
 
  - Use this function to insert specific values in SQL database <->
 
+```
  mysqli_insert(
      [REQ] (string) $tableName,
      [REQ] (assoc array) $values, 
      [REQ] (mysqli_connect()) $database_connection
      [OPT] (string OR char) $returnType
- ); 
+ );
+ ```
 
- Supported return types :
- ------------------------
+### Supported return types :
      - t - returns true if all executes without error --> [DEF] <--
      - i - returns last insert id (mysqli_insert_id()) 
 
- Errors and returns :
- ------------------------
+
+### Errors and returns :
      - Throws (ArgumentTypeError) for any argument missmatch, 
      - Throws (emptyParameterError) for calls with empty parameters, 
      - Throws (sqlError) for any SQL-related error 
      - returns (by default) true if all executes without error
 
 
-//////////////////////////
-// 3.4 MYSQLI_UPDATE() //
-////////////////////////
-
+### **4.2 MYSQLI_UPDATE ( )**
 
  - This function first updates column inside table in database <->
-
+`
+```
  sqli_update(
      [REQ] (string) $tableName,
      [REQ] (assoc array) $values, 
      [REQ] (assoc array) $targets, 
      [REQ] (mysqli_connect()) $database_connection
- ); 
+ );
+ ```
 
- Errors and returns :
- ------------------------
+ ### Errors and returns :
      - Throws (ArgumentTypeError) for any argument missmatch, 
      - Throws (emptyParameterError) for calls with empty parameters, 
      - Throws (sqlError) for any SQL-related error 
      - Returns (by default) true if all executes without error
 
 
-////////////////////////////////
-// 5. UPDATE LOG AND CREDITS //
-//////////////////////////////
+## ***5. UPDATE LOGS AND CREDITS ***
 
-///////////////////////
-// 5.1 UPDATE LOG : //
-/////////////////////
+### 5.1 UPDATE LOGS
 
- < 06/08/2019 v 1.0.0 >
- ------------------------
-   - Added mysqli_select() and all documentation.
-   ----------------------------------------------
- < 07/08/2019 v 1.0.1 >
- -----------------------
-   - Added mysqli_slect_all(),sqli_insert(), sqli_check_insert
-   - Added $returnType support for sqli_select().
-   -------------------------------------------------
- < 08/08/2019 v 1.0.2 >
- ----------------------
+ **15/08/2019 v 1.0.6**
+   - Added mysqli_multiple_querry()
+   - Updated the documentation
+   	
+ **14/08/2019 v 1.0.5**
+   - Added mysqli_single_querry()
+   - Fixed few bugs with mysqli_select()
+   - Removed mysqli_check_insert()
+ 
+ **11/08/2019 v 1.0.4**
+   - Added =, >=, <=, <, >, support to all functions
+  
+ **10/08/2019 v 1.0.3**
+   - Fixed bugs on mysqli_select_all()
+   - Adeed $returnType support to mysqli_select_all() and mysqli_insert()
+ 
+ **08/08/2019 v 1.0.2**
    - Added mysqli_update()
    - Return types renamed from "assoc","result","count","exist" to 'a','r','c','e'
    - Added $operators choice on mysqli_select() call
    - Implemented "smart" optional parameter decision on sqli_select()
-  -------------------------------------------------------------------- 
- < 10/08/2019 v 1.0.3 >
- -----------------------
-   - Fixed bugs on mysqli_select_all()
-   - Adeed $returnType support to mysqli_select_all() and mysqli_insert()
  
- < 11/08/2019 v 1.0.4 >
- ------------------------
-   - Added =, >=, <=, <, >, support to all functions
-
- < 14/08/2019 v 1.0.5 >
- ------------------------
-   - Added mysqli_single_querry()
-   - Fixed few bugs with mysqli_select()
-   - Removed mysqli_check_insert()
-
- < 15/08/2019 v 1.0.6 >
- ------------------------
-   - Added mysqli_multiple_querry()
-   - Updated the documentation
+ **07/08/2019 v 1.0.1**
+   - Added mysqli_slect_all(),sqli_insert(), sqli_check_insert
+   - Added $returnType support for sqli_select().
+   
+ **06/08/2019 v 1.0.0**
+   - Added mysqli_select() and all documentation.
 
 
-////////////////////
-// 5.2 CREDITS : //
-//////////////////
+### 5.1 CREDITS
 
-  - Made by Mulalić Almir 
-  - Created : 06/08/2019
-  - Last update : 15/08/2019 
-  - Current stable version : 1.0.6
+  **Made by Mulalić Almir 
+  Created : 06/08/2019
+  Last update : 15/08/2019 
+  Current stable version : 1.0.6**
