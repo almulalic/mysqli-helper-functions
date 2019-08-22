@@ -434,7 +434,7 @@ This written in simple mysqli way would look like this :
      - Returns (by default) true if all executes without error
 
 
-## ***5. UPDATE LOGS AND CREDITS ***
+## *** 5. UPDATE LOGS AND CREDITS ***
 
 ### 5.1 UPDATE LOGS
 
@@ -470,7 +470,7 @@ This written in simple mysqli way would look like this :
 
 ### 5.1 CREDITS
 
-  **Made by Mulalić Almir 
-  Created : 06/08/2019
-  Last update : 15/08/2019 
-  Current stable version : 1.0.6**
+  **Made by Mulalić Almir**
+  **Created : 06/08/2019**
+  **Last update : 15/08/2019**
+  **Current stable version : 1.0.6**
