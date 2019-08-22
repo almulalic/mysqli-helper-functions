@@ -317,9 +317,9 @@ This written in simple mysqli way would look like this :
 **NOTE:** These functions can be called in a single row too.
 
 
-## ***3. GUIDE AND DOCUMENTATION FOR MAIN FUNCTIONS ***
+## ***3. GUIDE AND DOCUMENTATION FOR MAIN FUNCTIONS***
 
-## ***4. GUIDE AND DOCUMENTATION FOR SIDE FUNCTIONS ***
+## ***4. GUIDE AND DOCUMENTATION FOR SIDE FUNCTIONS***
 
 
 * *- Dictionary :
@@ -434,7 +434,7 @@ This written in simple mysqli way would look like this :
      - Returns (by default) true if all executes without error
 
 
-## *** 5. UPDATE LOGS AND CREDITS ***
+## ***5. UPDATE LOGS AND CREDITS***
 
 ### 5.1 UPDATE LOGS
 
