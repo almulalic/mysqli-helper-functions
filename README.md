@@ -4,7 +4,7 @@
 ## **INTRODUCTION**
 
 
-This is an simple include file written in PHP that (currenlty) has 6 functions made to simplify mysqli querries.
+This is an simple include file written in PHP that (currenlty) has 6 functions made to simplify mysqli queries.
 
 The MySQLi functions allows you to access MySQL database servers. 
 
@@ -12,13 +12,13 @@ They are more secure than regular functions because they use prepared statements
   prevents probability of SQL Injection attacks and improves security.
 
 #### **File contains 2 main functions and 4 side functions :**
-  - 2 main functions are : **_mysqli_single_querry ( )_** and **_mysqli_multiple_querry ( )_**
+  - 2 main functions are : **_mysqli_single_query ( )_** and **_mysqli_multiple_query ( )_**
   - 4 side functions are : **_mysqli_select ( )_** , **_mysqli_select_all ( )_**, **_mysqli_insert ( )_**, **_mysqli_update ( )_**.
 
 Only difference between these groups of functions is the ammount and type of variables that you send to the function.
  
 Main functions are more straight forward and requiere : 
-	written mysqli querry,
+	written mysqli query,
 	parameters, 
 	database connection, 
 	(return type)
@@ -32,25 +32,25 @@ Side functions are more precise but they require more arguments:
 	return type,
 	operators
 
-These functions accept parts of sql querry statment than the function itself combines them to make a real mysqli querry.
+These functions accept parts of sql query statment than the function itself combines them to make a real mysqli query.
 
-**NOTE: ** that this is not a new way or a better way of executing querrys in PHP, this is just an include file that
+**NOTE: ** that this is not a new way or a better way of executing querys in PHP, this is just an include file that
   can maybe help someone avoid sphagetti code. 
 
 
 ### **Table of content :**
 
   #### 1. Main function and examples
-   - **1.1** - mysqli_single_querry() example
-   - **1.2** - mysqli_multiple_querry() example
+   - **1.1** - mysqli_single_query() example
+   - **1.2** - mysqli_multiple_query() example
   #### 2. Side functions and examples
    -  **2.1** - mysqli_select() example
    -  **2.2** - mysqli_select_all() example
    -  **2.3** - mysqli_insert() example
    -  **2.4** - mysqli_update() example
   #### 3. Guide and detailed description for main functions
-   -  **3.1** - mysqli_single_querry() detailed description
-   -  **3.2** - mysqli_multiple_querry() detailed description
+   -  **3.1** - mysqli_single_query() detailed description
+   -  **3.2** - mysqli_multiple_query() detailed description
   #### 4. Guide and detailed description for side functions
    -  **4.1** - mysqli_select() detailed description
    -  **4.2** - mysqli_select_all() detailed description
@@ -64,9 +64,9 @@ These functions accept parts of sql querry statment than the function itself com
  ## ***1. MAIN FUNCTIONS*** 
 
 
-### **EXAMPLE ONE - MYSQLI_SINGLE_QUERRY()**
+### **EXAMPLE ONE - MYSQLI_SINGLE_QUERY()**
 
- Usually (with sql error check, result check and formatting ) your PHP code to make a SINGLE querry where you
+ Usually (with sql error check, result check and formatting ) your PHP code to make a SINGLE query where you
  select all data from a table would look like this :
 	
 ```
@@ -92,18 +92,18 @@ These functions accept parts of sql querry statment than the function itself com
     	}
 ```
 
-This code is not too complicated untill you have multiple querrys that all depend on the result of the previous 
-querry which would make the code not only unreadable but confusing and distracting.
+This code is not too complicated untill you have multiple querys that all depend on the result of the previous 
+query which would make the code not only unreadable but confusing and distracting.
 
 Functions that are defined in this include files keep the result but make the code much shorter and more readable. 
 
 These functions feel more like pure SQL functions so every user, no matter of their skill level, can understand 
 the concept, which , in my opinion, is much harder in the previous example.
 
-Same example using main function mysqli_single_querry() from this file 
+Same example using main function mysqli_single_query() from this file 
 
 ```
-	$count = mysqli_single_querry( "SELECT * FROM users WHERE email = ?", $email, $database_connection,'c');
+	$count = mysqli_single_query( "SELECT * FROM users WHERE email = ?", $email, $database_connection,'c');
         if($count > 0) {
         	header("Location: ../register.php?emailTaken");
             	exit();        
@@ -114,11 +114,11 @@ Same example using main function mysqli_single_querry() from this file
 
  This function call reduced from 19 lines to 5 ( both examples could have less white space )
  
- The function call could be called in more lines if the querry is longer to increase readability which in worse case would produce 11 lines of code.
+ The function call could be called in more lines if the query is longer to increase readability which in worse case would produce 11 lines of code.
 
-### ***EXAMPLE 2 - MYSQLI_MULTIPLE_QUERRY()***
+### ***EXAMPLE 2 - MYSQLI_MULTIPLE_QUERY()***
 
-In this scenario we will need to check if the user exist in the database and than based on that querry we should
+In this scenario we will need to check if the user exist in the database and than based on that query we should
 decide if we should insert new data into table or throw an error if the user exist.
 
 This written in simple mysqli way would look like this :
@@ -160,38 +160,38 @@ This written in simple mysqli way would look like this :
 
   This doesen't look that bad but it sure is a lot of lines to read,follow, remember and scroll.
 
-  Lets look at the same example using mysqli_multiple_querry() function.
+  Lets look at the same example using mysqli_multiple_query() function.
   
-  This function allows us to basically make array of arrays(matrix) where every row(array) would represent a single querry.
+  This function allows us to basically make array of arrays(matrix) where every row(array) would represent a single query.
   
-  Additional varaiables would determine if the function should stop and return index of last successful querry or finish and return      true.
+  Additional varaiables would determine if the function should stop and return index of last successful query or finish and return      true.
 
 ```
-  	mysqli_multiple_querry(
+  	mysqli_multiple_query(
 		array("SELECT * FROM users WHERE username = ? OR email = ?",array($username,$email),'e',false),
 		array("INSERT INTO users (name,surname,email,username,password) VALUES (?,?,?,?,?)",array($name,$surname,$email,$username,$email,$password),'')),
 		$conn
 	);
 ```
 
- And that is basically it, this function will actually call mysqli_single_querry() function twice with the parameters you provided.
- In the array definition of the first (SQL querry) parameter stays the same as in the single call function(more on that later),
+ And that is basically it, this function will actually call mysqli_single_query() function twice with the parameters you provided.
+ In the array definition of the first (SQL query) parameter stays the same as in the single call function(more on that later),
  that is true for the second and third parameter too but the fourth parameter is actually the contidition in which the next statement    should be executed
 
 ```
-							=> RESULT == CONDITION => EXECUTE NEXT QUERRY
+							=> RESULT == CONDITION => EXECUTE NEXT QUERY
   EXECUTE FIRST QUERRY => COMPARE RESULT TO CONDITION => IF
-							=> RESULT != CONDITION => RETURN INDEX OF LAST QUERRY THAT WAS EXECUTED => BREAK 
+							=> RESULT != CONDITION => RETURN INDEX OF LAST QUERY THAT WAS EXECUTED => BREAK 
 ```
 
 
 ## ***SIDE FUNCTIONS***
 
- These functions require more variables and a bit of formatting but in some cases they are quick way to execute simple sql querrys.
+ These functions require more variables and a bit of formatting but in some cases they are quick way to execute simple sql querys.
 
 ### **EXAMPLE ONE - MYSQLI SELECT ( )** 
 
- This is an example of a mysqli normal SELECT querry :
+ This is an example of a mysqli normal SELECT query :
 
 ```
 	$sql = "SELECT email FROM users WHERE username= ?";
@@ -223,7 +223,7 @@ This written in simple mysqli way would look like this :
 
 ### **EXAMPLE TWO - MYSQLI SELECT ALL ( )**
 
- This is an example of a mysqli SELECT ALL querry :
+ This is an example of a mysqli SELECT ALL query :
 
 ```
 	$sql = "SELECT * FROM users WHERE username= ?";
@@ -255,7 +255,7 @@ This written in simple mysqli way would look like this :
 
 ### **EXAMPLE THREE - MYSQLI INSERT ( )**
 
- This is an example of a mysqli normal INSERT querry :
+ This is an example of a mysqli normal INSERT query :
 
 ```
 	$sql = "INSERT INTO users (username,email) VALUES (?,?)";
@@ -285,7 +285,7 @@ This written in simple mysqli way would look like this :
 
 ### **EXAMPLE FOUR - MYSQLI UPDATE ( )**
 
- This is an example of a mysqli normal UPDATE querry :
+ This is an example of a mysqli normal UPDATE query :
 
 ```
 	$sql = "UPDATE users SET firstName = ? WHERE username = ?";
@@ -438,12 +438,16 @@ This written in simple mysqli way would look like this :
 
 ### 5.1 UPDATE LOGS
 
+ **16/08/2019 v 1.0.7**
+   - Edited readme file
+   - Added documentation for main functions
+   
  **15/08/2019 v 1.0.6**
-   - Added mysqli_multiple_querry()
+   - Added mysqli_multiple_query()
    - Updated the documentation
    	
  **14/08/2019 v 1.0.5**
-   - Added mysqli_single_querry()
+   - Added mysqli_single_query()
    - Fixed few bugs with mysqli_select()
    - Removed mysqli_check_insert()
  
