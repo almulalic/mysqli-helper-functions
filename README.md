@@ -12,7 +12,7 @@ They are more secure than regular functions because they use prepared statements
   prevents probability of SQL Injection attacks and improves security.
 
 #### **File contains 2 main functions and 4 side functions :**
-  - 2 main functions are : **_mysqli_single_query ( )_** and **_mysqli_multiple_query ( )_**
+  - 2 main functions are : **_mysqli_single_query ( )_** and **_mysqli_multi_query ( )_**
   - 4 side functions are : **_mysqli_select ( )_** , **_mysqli_select_all ( )_**, **_mysqli_insert ( )_**, **_mysqli_update ( )_**.
 
 Only difference between these groups of functions is the ammount and type of variables that you send to the function.
@@ -92,7 +92,7 @@ These functions accept parts of sql query statment than the function itself comb
     	}
 ```
 
-This code is not too complicated untill you have multiple querys that all depend on the result of the previous 
+This code is not too complicated untill you have multi querys that all depend on the result of the previous 
 query which would make the code not only unreadable but confusing and distracting.
 
 Functions that are defined in this include files keep the result but make the code much shorter and more readable. 
@@ -116,7 +116,7 @@ Same example using main function mysqli_single_query() from this file
  
  The function call could be called in more lines if the query is longer to increase readability which in worse case would produce 11 lines of code.
 
-### ***EXAMPLE 2 - MYSQLI_MULTIPLE_QUERY()***
+### ***EXAMPLE 2 - MYSQLI_MULTI_QUERY()***
 
 In this scenario we will need to check if the user exist in the database and than based on that query we should
 decide if we should insert new data into table or throw an error if the user exist.
@@ -160,14 +160,14 @@ This written in simple mysqli way would look like this :
 
   This doesen't look that bad but it sure is a lot of lines to read,follow, remember and scroll.
 
-  Lets look at the same example using mysqli_multiple_query() function.
+  Lets look at the same example using mysqli_multi_query() function.
   
   This function allows us to basically make array of arrays(matrix) where every row(array) would represent a single query.
   
   Additional varaiables would determine if the function should stop and return index of last successful query or finish and return      true.
 
 ```
-  	mysqli_multiple_query(
+  	mysqli_multi_query(
 		array("SELECT * FROM users WHERE username = ? OR email = ?",array($username,$email),'e',false),
 		array("INSERT INTO users (name,surname,email,username,password) VALUES (?,?,?,?,?)",array($name,$surname,$email,$username,$email,$password),'')),
 		$conn
@@ -319,6 +319,72 @@ This written in simple mysqli way would look like this :
 
 ## ***3. GUIDE AND DOCUMENTATION FOR MAIN FUNCTIONS***
 
+* *- Dictionary :
+  **[REQ]** = Requiered, **[OPT]** = optional, **[DEF]** = Default
+  
+### **3.1 MYSQLI_SINGLE_QUERY ( )**
+
+
+ - Use this function to execute a single mysqli query with a prepared statement.
+ 
+**NOTE:** This function uses mysqli prepared statements instead of default sql statements so additional knowladge of mysqli prepared statements is needed. <->
+
+
+```
+ mysqli_single_query(
+     [REQ] ( string ) $preparedStatement (valid mysqli prepared statement) ,
+     [REQ] ( array or a single value ) $parameters,
+     [REQ] ( mysqli_connect() ) $database_connection
+     [OPT] ( string ) $returnType, [DEF] associative array
+ ); 
+ ```
+ 
+ #### Supported return types :
+     - a - returns associatve array [DEF] can change in $returnType = 'a' 
+     - r - returns mysqli_result
+     - c - returns count of rows in mysqli result
+     - e - returns true if value exist or false if it don't exist
+
+ #### Errors and returns :
+     - Throws (ArgumentTypeError) for any argument missmatch, 
+     - Throws (emptyParameterError) for calls with empty parameters, 
+     - Throws (sqlError) for any SQL-related error 
+     - Returns (by default) associative array as final output (can be changed)
+     
+     
+### **3.2 MYSQLI_MULTI_QUERY ( )**
+
+
+ - Use this function to execute multiple single mysqli query with a prepared statement. This function is synchronus and condition based 
+ which means it will execute one query at the time and if the result of that query matches your expected result it will contiune on the
+ next one. If the result is different this function will return index of the last sucessfully executed query (starts at 1).
+ 
+**NOTE:** This function uses mysqli prepared statements instead of default sql statements so additional knowladge of mysqli prepared statements is needed. <->
+
+**NOTE:** First parameter is a matrix of arrays. To make this matrix you need to write multiple single sqli querries identical to one's 
+mentioned in 3.1 MYSQLI_SQLI_QUERIES.
+
+```
+ mysqli_single_query(
+     [REQ] ( array or associate array ) $singleQueryArray ( matrix of single sqli queries ) ,
+     [REQ] ( mysqli_connect() ) $database_connection
+ ); 
+ ```
+ 
+ #### Supported return types :
+     - a - returns associatve array [DEF] can change in $returnType = 'a' 
+     - r - returns mysqli_result
+     - c - returns count of rows in mysqli result
+     - e - returns true if value exist or false if it don't exist
+
+ #### Errors and returns :
+     - Throws (ArgumentTypeError) for any argument missmatch, 
+     - Throws (emptyParameterError) for calls with empty parameters, 
+     - Throws (sqlError) for any SQL-related error 
+     - Returns (by default) associative array as final output (can be changed)
+     
+
+
 ## ***4. GUIDE AND DOCUMENTATION FOR SIDE FUNCTIONS***
 
 
@@ -439,11 +505,12 @@ This written in simple mysqli way would look like this :
 ### 5.1 UPDATE LOGS
 
  **16/08/2019 v 1.0.7**
-   - Edited readme file
    - Added documentation for main functions
+   - Updated the documentation
+   
    
  **15/08/2019 v 1.0.6**
-   - Added mysqli_multiple_query()
+   - Added mysqli_multi_query()
    - Updated the documentation
    	
  **14/08/2019 v 1.0.5**
