@@ -9,7 +9,7 @@ function is_assoc($arr) {
 
 /* MAIN FUNCTIONS */
 
-function mysqli_single_execute($prepSql,$param,$conn,$returnType = 'r') {
+function mysqli_single_query($prepSql,$param,$conn,$returnType = 'r') {
         
     if (!is_string($prepSql))
         throw new Exception ('argumentTypeError - SQL statement must be a string');
@@ -81,7 +81,7 @@ function mysqli_single_execute($prepSql,$param,$conn,$returnType = 'r') {
     return true;
 }
 
-function mysqli_multi_execute($requests,$conn) {
+function mysqli_multi_query($requests,$conn) {
     
     if(count($requests) < 2)
         throw new Exception('argumentCountError - This function requires minimum of 2 sql requests');
